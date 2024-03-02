@@ -36,7 +36,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "@lottiefiles/lottie-player/dist/lottie-player.js"
+              "/node_modules/lottie-web/build/player/lottie.min.js"
             ]
           },
           "configurations": {
@@ -44,8 +44,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
