@@ -1,0 +1,31 @@
+<form [@formAnim] class="d-flex flex-column gap-3 overflow-hidden" [formGroup]="modifyNoteForm" (ngSubmit)="onSubmit()">
+    @if (isAdd()) {
+        <h1>Add Note</h1>
+    } @else {
+        <h1>Edit Note</h1>
+    }
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" type="text">
+        @if (getTitleError()) {
+        <mat-error>{{getTitleError()}}</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+        @if (getDescriptionError()) {
+        <mat-error>{{getDescriptionError()}}</mat-error>
+        }
+    </mat-form-field>
+    <mat-error *ngIf="error$ | async as error">{{error}}</mat-error>
+    <div class="d-flex gap-2 justify-content-end">
+        <a mat-button routerLink="/" [disabled]="loadingAction$ | async">Cancel</a>
+        <button type="submit" mat-raised-button color="primary" [disabled]="loadingAction$ | async">
+            @if (loadingAction$ | async) {
+            <mat-progress-spinner color="accent" diameter="20" mode="indeterminate"></mat-progress-spinner>
+            } @else {
+            <span>Save</span>
+            }</button>
+    </div>
+</form>

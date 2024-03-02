@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+@import './styles/reset';
+
+body {
+    background-color: rgb(23, 23, 23);
+    color: white;
+}

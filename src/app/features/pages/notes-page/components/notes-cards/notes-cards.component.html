@@ -1,0 +1,51 @@
+<div>
+    <div [@filterAnim]>
+        <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Filter</mat-label>
+            <input [(ngModel)]="search" matInput type="text" class="filter" placeholder="search"
+                [readonly]="isLoadingAction()">
+            <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+    </div>
+    @if (notesFiltered() && !isLoadingData()) {
+    <div [@listAnim]>
+        @for (item of notesFiltered(); track item.id) {
+        <mat-card [@itemAnim] class="mb-2">
+            <mat-card-header class="fw-bold mb-2">{{item.title}}</mat-card-header>
+            <mat-card-content class="content">
+                <p class="description fs-5">{{item.description}}</p>
+                <div class="gradient-fade"></div>
+            </mat-card-content>
+            <mat-card-actions class="d-flex gap-2">
+                <button mat-raised-button color="accent" [disabled]="isLoadingAction()"
+                    (click)="editNote.emit(item.id)">Edit</button>
+                <button mat-raised-button color="primary" [disabled]="isLoadingAction()"
+                    (click)="deleteNote.emit(item.id)">Delete</button>
+            </mat-card-actions>
+        </mat-card>
+        }
+    </div>
+    } @else {
+    <!-- Skeleton Loader template -->
+    <div [@listAnim]>
+        @for (item of [1, 2, 3]; track $index) {
+        <mat-card [@skeletonAnim] class="mb-2">
+            <mat-card-content>
+                <div class="w-25">
+                    <ngx-skeleton-loader count="1" appearance="line" animation="pulse"
+                        loadingText="loading"></ngx-skeleton-loader>
+                </div>
+                <div class="w-75">
+                    <ngx-skeleton-loader count="1" appearance="line" animation="pulse"
+                        loadingText="loading"></ngx-skeleton-loader>
+                </div>
+                <div class="w-50">
+                    <ngx-skeleton-loader count="1" appearance="line" animation="pulse"
+                        loadingText="loading"></ngx-skeleton-loader>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        }
+    </div>
+    }
+</div>

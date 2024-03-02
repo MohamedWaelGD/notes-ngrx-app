@@ -1,0 +1,3 @@
+<div>
+    <app-notes-cards [notes]="notes | async" [isLoadingAction]="loadingAction | async" [isLoadingData]="loadingData | async" (editNote)="onEditNote($event)" (deleteNote)="onDeleteNote($event)"></app-notes-cards>
+</div>

@@ -1,0 +1,13 @@
+<div [@navAnim] class="overflow-hidden">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <div class="container d-flex">
+                <a routerLink="/" class="brand"><mat-icon>description</mat-icon> Notes App</a>
+                <span class="spacer"></span>
+                <button (click)="routeToAddNote()" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
