@@ -1,6 +1,6 @@
 <div>
     <div [@filterAnim]>
-        <mat-form-field class="w-100" appearance="outline">
+        <mat-form-field class="w-100" appearance="outline" floatLabel="always">
             <mat-label>Filter</mat-label>
             <input [(ngModel)]="search" matInput type="text" class="filter" placeholder="search"
                 [readonly]="isLoadingAction()">
@@ -40,7 +40,7 @@
     } @else {
     <!-- Skeleton Loader template -->
     <div [@listAnim]>
-        @for (item of [1, 2, 3]; track $index) {
+        @for (item of [1, 2, 3, 4]; track $index) {
         <mat-card [@skeletonAnim] class="mb-2">
             <mat-card-content>
                 <div class="w-25">

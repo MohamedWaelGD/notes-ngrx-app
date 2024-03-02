@@ -150,7 +150,7 @@ export class NotesCardsComponent {
   search = model('');
   notesFiltered = computed<Note[] | undefined>(() => {
     return this.notes()?.filter(
-      (e) =>
+      (e) => 
         this.compareFilter(e.title, this.search()) ||
         this.compareFilter(e.description!, this.search())
     );
@@ -169,6 +169,6 @@ export class NotesCardsComponent {
   }
 
   private compareFilter(str1: string, str2: string) {
-    return str1.toLowerCase().includes(str2.toLowerCase());
+    return str1?.toLowerCase().includes(str2?.toLowerCase());
   }
 }
