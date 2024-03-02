@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Output,
@@ -40,6 +41,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
   ],
   templateUrl: './notes-cards.component.html',
   styleUrl: './notes-cards.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('filterAnim', [
       transition('void => *', [

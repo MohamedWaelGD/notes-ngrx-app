@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,6 +25,7 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './notes-page.component.html',
   styleUrl: './notes-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotesPageComponent implements OnInit {
 
