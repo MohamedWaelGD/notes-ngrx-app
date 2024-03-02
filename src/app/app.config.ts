@@ -13,16 +13,21 @@ import {
 } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { provideLottieOptions } from 'ngx-lottie';
+import player from 'lottie-web';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
+    provideLottieOptions({
+      player: () => player
+    }),
     importProvidersFrom([
         StoreModule.forRoot({}, {}),
         EffectsModule.forRoot({}, {}),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-        NgxSkeletonLoaderModule
+        NgxSkeletonLoaderModule,
     ])
 ],
 };

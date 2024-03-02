@@ -25,6 +25,8 @@ import {
   trigger,
 } from '@angular/animations';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { LottieComponent, AnimationOptions } from 'ngx-lottie';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-notes-cards',
@@ -36,8 +38,10 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     MatIconModule,
     MatInputModule,
     MatCardModule,
+    MatProgressSpinnerModule,
     FormsModule,
     NgxSkeletonLoaderModule,
+    LottieComponent
   ],
   templateUrl: './notes-cards.component.html',
   styleUrl: './notes-cards.component.scss',
@@ -151,9 +155,18 @@ export class NotesCardsComponent {
         this.compareFilter(e.description!, this.search())
     );
   });
+  lottieEmptyOptions: AnimationOptions = {
+    path: '/assets/lottie/empty-lottie.json'
+  }
+  selectedNoteId = signal<string>('');
 
   @Output() editNote = new EventEmitter<string>();
   @Output() deleteNote = new EventEmitter<string>();
+
+  onDelete(id: string) {
+    this.selectedNoteId.set(id);
+    this.deleteNote.emit(id);
+  }
 
   private compareFilter(str1: string, str2: string) {
     return str1.toLowerCase().includes(str2.toLowerCase());

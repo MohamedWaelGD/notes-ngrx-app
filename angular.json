@@ -35,7 +35,9 @@
               "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "@lottiefiles/lottie-player/dist/lottie-player.js"
+            ]
           },
           "configurations": {
             "production": {

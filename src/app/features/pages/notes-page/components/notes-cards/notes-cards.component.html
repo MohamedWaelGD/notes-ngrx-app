@@ -8,23 +8,35 @@
         </mat-form-field>
     </div>
     @if (notesFiltered() && !isLoadingData()) {
-    <div [@listAnim]>
-        @for (item of notesFiltered(); track item.id) {
-        <mat-card [@itemAnim] class="mb-2">
-            <mat-card-header class="fw-bold mb-2">{{item.title}}</mat-card-header>
-            <mat-card-content class="content">
-                <p class="description fs-5">{{item.description}}</p>
-                <div class="gradient-fade"></div>
-            </mat-card-content>
-            <mat-card-actions class="d-flex gap-2">
-                <button mat-raised-button color="accent" [disabled]="isLoadingAction()"
-                    (click)="editNote.emit(item.id)">Edit</button>
-                <button mat-raised-button color="primary" [disabled]="isLoadingAction()"
-                    (click)="deleteNote.emit(item.id)">Delete</button>
-            </mat-card-actions>
-        </mat-card>
+        @if (notesFiltered()?.length! > 0) {
+            <div [@listAnim]>
+                @for (item of notesFiltered(); track item.id) {
+                <mat-card [@itemAnim] class="mb-2">
+                    <mat-card-header class="fw-bold mb-2">{{item.title}}</mat-card-header>
+                    <mat-card-content class="content">
+                        <p class="description fs-5">{{item.description}}</p>
+                        <div class="gradient-fade"></div>
+                    </mat-card-content>
+                    <mat-card-actions class="d-flex gap-2">
+                        <button mat-raised-button color="accent" [disabled]="isLoadingAction()"
+                            (click)="editNote.emit(item.id)">Edit</button>
+                        <button mat-raised-button color="primary" [disabled]="isLoadingAction()"
+                            (click)="onDelete(item.id)">
+                            @if (selectedNoteId() === item.id && isLoadingAction()) {
+                                <mat-progress-spinner color="accent" diameter="20" mode="indeterminate"></mat-progress-spinner>
+                            } @else {
+                                <span>Delete</span>
+                            }</button>
+                    </mat-card-actions>
+                </mat-card>
+                }
+            </div>
+        } @else {
+            <div  class="lottie-empty">
+                <ng-lottie [options]="lottieEmptyOptions"></ng-lottie>
+                <p class="text-center fs-5">There are no notes here, Click plus icon to add</p>
+            </div>
         }
-    </div>
     } @else {
     <!-- Skeleton Loader template -->
     <div [@listAnim]>
